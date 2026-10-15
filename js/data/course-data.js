@@ -43,9 +43,52 @@ export const FIXED_LOCATIONS = {
 
 export const QUESTIONS = [
   {
-    step: "QUESTION 1 / 5",
+    step: "QUESTION 1 / 7",
+    title: "2일 차 토요일 오전 협재 🌊",
+    subtitle: "협재 바다 도착! 아침엔 뭐부터 할까?",
+    options: [
+      {
+        type: "A",
+        emoji: "☕",
+        label: "협재 바다 산책 + 돌담 카페 [잔물결] 드립커피",
+        desc: "에메랄드 바다 거닐고, 제주 돌담 감성 카페에서 여유롭게 모닝 핸드드립 커피!",
+        placeName: "카페 잔물결",
+        category: "cafe",
+        day: 2,
+        lat: 33.3912,
+        lng: 126.2335,
+        link: "https://map.naver.com/p/search/제주%20잔물결"
+      },
+      {
+        type: "B",
+        emoji: "🎁",
+        label: "귀여운 감성 소품샵 [오달콤제주] 기념품 쇼핑",
+        desc: "협재해변 바로 앞! 귀여운 감귤 굿즈, 감성 소품들 둘러보며 아기자기하게 득템하기",
+        placeName: "오달콤제주 협재점",
+        category: "spot",
+        day: 2,
+        lat: 33.3941,
+        lng: 126.2413,
+        link: "https://map.naver.com/p/search/오달콤제주%20협재점"
+      },
+      {
+        type: "C",
+        emoji: "🍱",
+        label: "바다 보며 먹는 자작냉우동 & 돈가스 [협재 수우동]",
+        desc: "오션뷰 통창 보면서 시원한 자작냉우동과 바삭한 돈가스로 든든하게 여행 시작!",
+        placeName: "협재 수우동",
+        category: "food",
+        day: 2,
+        lat: 33.3955,
+        lng: 126.2415,
+        link: "https://map.naver.com/p/search/협재%20수우동"
+      }
+    ]
+  },
+  {
+    step: "QUESTION 2 / 7",
     title: "2일 차 토요일 오후 코스 🌾",
-    subtitle: "협재에서 여유 부린 뒤, 오후엔 어디 갈까?",
+    subtitle: "협재에서 여유 부린 뒤, 서귀포 내려가는 길엔 어디 들를까?",
     options: [
       {
         type: "A",
@@ -86,7 +129,7 @@ export const QUESTIONS = [
     ]
   },
   {
-    step: "QUESTION 2 / 5",
+    step: "QUESTION 3 / 7",
     title: "2~3일 차 호캉스 숙소 픽! 🏨",
     subtitle: "토·일 2박을 보낼 우리의 베이스캠프는?",
     options: [
@@ -118,7 +161,7 @@ export const QUESTIONS = [
         type: "C",
         emoji: "🌴",
         label: "더 시에나 프리모 (구 토스카나 호텔) (이탈리아 휴양지 & 34도 온수풀)",
-        desc: "이탈리아 휴양지 감성 야자수 뷰 대형 온수풀에서 조용하고 로맨틱한 휴식!",
+        desc: "이탈리아 휴양지 감성 야자수 뷰 대형 온수풀에서 조용하고 잔잔한 휴식!",
         placeName: "더 시에나 프리모 (구 토스카나 호텔)",
         category: "hotel",
         day: [2, 3],
@@ -129,7 +172,50 @@ export const QUESTIONS = [
     ]
   },
   {
-    step: "QUESTION 3 / 5",
+    step: "QUESTION 4 / 7",
+    title: "2일 차 토요일 저녁 흑돼지 🍖",
+    subtitle: "온수풀 수영 후 저녁 흑돼지는 어떤 스타일?",
+    options: [
+      {
+        type: "A",
+        emoji: "🥩",
+        label: "숙성도 중문점 (직원이 직접 구워주는 숙성육 핫플)",
+        desc: "육즙 팡팡 터지는 교차숙성 흑돼지 꽃등심과 뼈등심, 직원이 완벽하게 구워주는 1등 맛집!",
+        placeName: "숙성도 중문점",
+        category: "food",
+        day: 2,
+        lat: 33.2520,
+        lng: 126.4175,
+        link: "https://map.naver.com/p/search/숙성도%20중문점"
+      },
+      {
+        type: "B",
+        emoji: "🔥",
+        label: "돈사돈 중문점 (연탄불 두툼한 근고기 로컬 감성)",
+        desc: "두툼한 연탄불 흑돼지 근고기에 멜젓 콕 찍어 먹는 찐 로컬 노포 분위기!",
+        placeName: "돈사돈 중문점",
+        category: "food",
+        day: 2,
+        lat: 33.2560,
+        lng: 126.4260,
+        link: "https://map.naver.com/p/search/돈사돈%20중문점"
+      },
+      {
+        type: "C",
+        emoji: "🍷",
+        label: "호텔 룸파티 (딱새우회+흑돼지 포장해서 와인 한잔)",
+        desc: "추운 밖 대신 따뜻한 룸에서 편안하게 딱새우회와 흑돼지 만찬 포장해서 오붓한 와인 파티!",
+        placeName: "중문 딱새우 & 룸파티",
+        category: "food",
+        day: 2,
+        lat: 33.2552,
+        lng: 126.4024,
+        link: "https://map.naver.com/p/search/중문딱새우회"
+      }
+    ]
+  },
+  {
+    step: "QUESTION 5 / 7",
     title: "3일 차 일요일 식당 분위기 🐟",
     subtitle: "일요일 갈치 & 회, 어떤 분위기가 좋아?",
     options: [
@@ -148,8 +234,8 @@ export const QUESTIONS = [
       {
         type: "B",
         emoji: "🥢",
-        label: "감성 다이닝 & 룸파티 (운정이네 통갈치 + 와인 한잔)",
-        desc: "낮엔 푸짐한 통갈치조림, 밤엔 호텔 룸에서 딱새우+고등어회 포장해서 와인 한잔!",
+        label: "통갈치 한상차림 (운정이네 통갈치 + 여유로운 카페)",
+        desc: "낮엔 푸짐한 통갈치조림 해체쇼, 저녁엔 서귀포 감성 횟집에서 힐링!",
         placeName: "운정이네 중문점",
         category: "food",
         day: 3,
@@ -172,7 +258,7 @@ export const QUESTIONS = [
     ]
   },
   {
-    step: "QUESTION 4 / 5",
+    step: "QUESTION 6 / 7",
     title: "3일 차 일요일 남부 오후 데이트 🌸",
     subtitle: "따뜻한 서귀포 남쪽, 어디서 힐링할까?",
     options: [
@@ -215,7 +301,7 @@ export const QUESTIONS = [
     ]
   },
   {
-    step: "QUESTION 5 / 5",
+    step: "QUESTION 7 / 7",
     title: "4일 차 월요일 함덕 마무리 & 복귀 🌊",
     subtitle: "서울 가기 전 함덕에서 마지막 커피와 빵은?",
     options: [
