@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "JejuTripSelectionPayload",
-  "description": "민아가 '선택 완료!'를 눌렀을 때 백그라운드에서 전송되는 JSON 페이로드 규격",
+  "description": "민아가 질문을 진행하거나 '선택 완료!'를 눌렀을 때 백그라운드에서 전송되는 JSON 페이로드 규격 (총 7문항)",
   "type": "object",
   "properties": {
     "name": {
@@ -21,53 +21,48 @@
     },
     "q1_course": {
       "type": "string",
-      "example": "새별오름 초입 억새밭 산책 (적당히 걷기)",
-      "description": "2일차 토요일 오후 코스"
+      "example": "감성 카페 힐링 (잔물결 핸드드립 커피 & 돌담 쉼표)",
+      "description": "2일차 토요일 오전 협재 코스"
     },
-    "q2_hotel": {
+    "q2_afternoon": {
       "type": "string",
-      "example": "히든클리프 호텔 (숲속 온수풀 & 중문 5분 복귀)",
-      "description": "2~3일차 토·일 호캉스 숙소 픽"
+      "example": "새별오름 초입 억새밭 산책 (적당히 걷기 & 은빛 인생샷)",
+      "description": "2일차 토요일 오후 서부 코스"
     },
-    "q2_food": {
+    "q3_hotel": {
       "type": "string",
-      "example": "히든클리프 호텔 (숲속 온수풀 & 중문 5분 복귀)",
-      "description": "2~3일차 숙소 (구 스크립트 호환용 키)"
+      "example": "히든클리프 호텔 (숲속 온수 인피니티 풀 & 흑돼지 택시 5분)",
+      "description": "2~3일차 토·일 베이스캠프 호캉스 숙소"
     },
-    "q3_food": {
+    "q4_dinner": {
       "type": "string",
-      "example": "정갈하고 예쁜 한상 (고집돌우럭 정식 + 깔끔 횟집)",
-      "description": "3일차 일요일 서귀포 식당 분위기"
+      "example": "숙성도 중문점 (직원이 직접 구워주는 숙성 흑돼지 & 시원한 쏘맥)",
+      "description": "2일차 토요일 저녁 흑돼지 만찬"
     },
-    "q3_vibe": {
+    "q5_lunch": {
       "type": "string",
-      "example": "정갈하고 예쁜 한상 (고집돌우럭 정식 + 깔끔 횟집)",
-      "description": "3일차 식당 (구 스크립트 호환용 키)"
+      "example": "고집돌우럭 중문점 (깔끔하고 정갈한 우럭조림 & 옥돔구이 한상)",
+      "description": "3일차 일요일 점심 서귀포 맛집"
     },
-    "q4_afternoon": {
+    "q6_healing": {
       "type": "string",
-      "example": "쇠소깍 & 휴애리 (물빛 산책 & 동백꽃길 귤따기)",
-      "description": "3일차 일요일 남부 오후 감성일정"
+      "example": "휴애리 자연생활공원 (감귤 따기 체험 & 핑크빛 동백꽃 산책)",
+      "description": "3일차 일요일 오후 남부 힐링 데이트"
     },
-    "q5_lastday": {
+    "q7_lastday": {
       "type": "string",
-      "example": "함덕 델문도 (바다 바로 앞 탁 트인 오션뷰 물멍)",
-      "description": "4일차 월요일 함덕 마무리 & 복귀"
+      "example": "카페 델문도 (에메랄드빛 함덕 바다 정면 오션뷰 테라스 카페)",
+      "description": "4일차 월요일 동부 감성 마무리"
     },
     "memo": {
       "type": "string",
-      "example": "소품샵 꼭 들르고 싶어! 저녁엔 딱새우 포장해서 먹자",
-      "description": "민아가 직접 입력한 추가 코멘트 및 궁금한 점"
+      "example": "수영복 챙겨가자! 흑돼지 먹고 2차로 편의점 털자",
+      "description": "민아가 자유롭게 남긴 코멘트/메모"
     }
   },
   "required": [
     "name",
     "timestamp",
-    "typeBadge",
-    "q1_course",
-    "q2_food",
-    "q3_vibe",
-    "q4_afternoon",
-    "q5_lastday"
+    "typeBadge"
   ]
 }
