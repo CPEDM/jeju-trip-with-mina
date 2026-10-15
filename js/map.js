@@ -35,10 +35,13 @@ export function initMap() {
   const mapContainer = document.getElementById('map');
   if (!mapContainer) return;
 
-  mapInstance = L.map('map', { scrollWheelZoom: false }).setView([33.3617, 126.5292], 9);
+  mapInstance = L.map('map', { 
+    scrollWheelZoom: false,
+    attributionControl: false 
+  }).setView([33.3617, 126.5292], 9);
 
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OpenStreetMap'
+    maxZoom: 18
   }).addTo(mapInstance);
 
   // 모바일 화면 전환 시 타일 깨짐 방지 (2단계 보정)

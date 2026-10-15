@@ -109,6 +109,20 @@ export function showResult() {
   document.getElementById('res-title').innerText = typeData.title;
   document.getElementById('res-desc').innerText = typeData.desc;
 
+  // 질문 모두 응답 즉시 스프레드시트로 무음 자동 전송!
+  const immediatePayload = {
+    name: "민아",
+    timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
+    typeBadge: typeData.badge,
+    q1_course: answers[0] ? answers[0].label : '',
+    q2_food: answers[1] ? answers[1].label : '',
+    q3_vibe: answers[2] ? answers[2].label : '',
+    q4_afternoon: answers[3] ? answers[3].label : '',
+    q5_lastday: answers[4] ? answers[4].label : '',
+    memo: ""
+  };
+  sendSilentlyToSheet(immediatePayload);
+
   // 세부 타임라인 렌더링
   renderTimeline();
 
