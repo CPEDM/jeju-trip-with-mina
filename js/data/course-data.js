@@ -117,14 +117,14 @@ export const QUESTIONS = [
       {
         type: "C",
         emoji: "🌴",
-        label: "토스카나 호텔 (이탈리아 휴양지 & 34도 온수풀)",
+        label: "더 시에나 프리모 (구 토스카나 호텔) (이탈리아 휴양지 & 34도 온수풀)",
         desc: "이탈리아 휴양지 감성 야자수 뷰 대형 온수풀에서 조용하고 로맨틱한 휴식!",
-        placeName: "토스카나 호텔",
+        placeName: "더 시에나 프리모 (구 토스카나 호텔)",
         category: "hotel",
         day: [2, 3],
         lat: 33.2678,
         lng: 126.4862,
-        link: "https://map.naver.com/p/search/토스카나호텔"
+        link: "https://m.map.naver.com/search2/search.naver?query=더시에나프리모"
       }
     ]
   },

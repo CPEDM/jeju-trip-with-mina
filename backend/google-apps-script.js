@@ -29,11 +29,11 @@ function doPost(e) {
         "기록일시",
         "이름",
         "선택 유형",
-        "Q1 토요일 오후 코스",
-        "Q2 토요일 점심/저녁 맛집",
-        "Q3 일요일 서귀포 식당",
-        "Q4 일요일 남부 오후",
-        "Q5 월요일 체력안배",
+        "Q1 2일차 오후 코스",
+        "Q2 2~3일차 호캉스 숙소",
+        "Q3 3일차 식당 분위기",
+        "Q4 3일차 남부 데이트",
+        "Q5 4일차 함덕 마무리",
         "민아의 코멘트/메모"
       ];
       sheet.appendRow(headers);
@@ -61,8 +61,8 @@ function doPost(e) {
       data.name || "민아",
       data.typeBadge || "",
       data.q1_course || "",
-      data.q2_food || "",
-      data.q3_vibe || "",
+      data.q2_hotel || data.q2_food || "",
+      data.q3_food || data.q3_vibe || "",
       data.q4_afternoon || "",
       data.q5_lastday || "",
       data.memo || ""

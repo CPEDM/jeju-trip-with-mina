@@ -24,25 +24,35 @@
       "example": "새별오름 초입 억새밭 산책 (적당히 걷기)",
       "description": "2일차 토요일 오후 코스"
     },
+    "q2_hotel": {
+      "type": "string",
+      "example": "히든클리프 호텔 (숲속 온수풀 & 중문 5분 복귀)",
+      "description": "2~3일차 토·일 호캉스 숙소 픽"
+    },
     "q2_food": {
       "type": "string",
-      "example": "옹포별장가든(닭샤브) + 숙성도 중문점",
-      "description": "2일차 토요일 점심/저녁 맛집"
+      "example": "히든클리프 호텔 (숲속 온수풀 & 중문 5분 복귀)",
+      "description": "2~3일차 숙소 (구 스크립트 호환용 키)"
+    },
+    "q3_food": {
+      "type": "string",
+      "example": "정갈하고 예쁜 한상 (고집돌우럭 정식 + 깔끔 횟집)",
+      "description": "3일차 일요일 서귀포 식당 분위기"
     },
     "q3_vibe": {
       "type": "string",
-      "example": "깔끔·모던 제주 한상차림 (고집돌우럭)",
-      "description": "3일차 일요일 서귀포 식당 분위기"
+      "example": "정갈하고 예쁜 한상 (고집돌우럭 정식 + 깔끔 횟집)",
+      "description": "3일차 식당 (구 스크립트 호환용 키)"
     },
     "q4_afternoon": {
       "type": "string",
-      "example": "쇠소깍 물빛 산책 + 휴애리 동백꽃 & 귤따기",
+      "example": "쇠소깍 & 휴애리 (물빛 산책 & 동백꽃길 귤따기)",
       "description": "3일차 일요일 남부 오후 감성일정"
     },
     "q5_lastday": {
       "type": "string",
-      "example": "에코랜드 기차 숲길 투어 + 함덕 델문도 여유",
-      "description": "4일차 월요일 체력 안배 & 복귀"
+      "example": "함덕 델문도 (바다 바로 앞 탁 트인 오션뷰 물멍)",
+      "description": "4일차 월요일 함덕 마무리 & 복귀"
     },
     "memo": {
       "type": "string",

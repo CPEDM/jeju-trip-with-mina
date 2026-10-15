@@ -116,7 +116,9 @@ export function showResult() {
     typeBadge: typeData.badge,
     q1_course: answers[0] ? answers[0].label : '',
     q2_hotel: answers[1] ? answers[1].label : '',
+    q2_food: answers[1] ? answers[1].label : '',
     q3_food: answers[2] ? answers[2].label : '',
+    q3_vibe: answers[2] ? answers[2].label : '',
     q4_afternoon: answers[3] ? answers[3].label : '',
     q5_lastday: answers[4] ? answers[4].label : '',
     memo: ""
@@ -201,7 +203,9 @@ export function finishSelection() {
     typeBadge: document.getElementById('res-badge') ? document.getElementById('res-badge').innerText : '',
     q1_course: answers[0] ? answers[0].label : '',
     q2_hotel: answers[1] ? answers[1].label : '',
+    q2_food: answers[1] ? answers[1].label : '',
     q3_food: answers[2] ? answers[2].label : '',
+    q3_vibe: answers[2] ? answers[2].label : '',
     q4_afternoon: answers[3] ? answers[3].label : '',
     q5_lastday: answers[4] ? answers[4].label : '',
     memo: memo
