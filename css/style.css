@@ -44,6 +44,20 @@ body {
   font-size: 13px;
   border: 2.5px solid white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s ease-out;
+}
+
+.custom-pin:hover,
+.custom-pin-hotel:hover {
+  transform: scale(1.12);
+}
+
+.custom-pin-hotel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease-out;
 }
 
 .pin-route { background: #EA580C; color: white; }

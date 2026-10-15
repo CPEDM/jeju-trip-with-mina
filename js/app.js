@@ -115,8 +115,8 @@ export function showResult() {
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
     typeBadge: typeData.badge,
     q1_course: answers[0] ? answers[0].label : '',
-    q2_food: answers[1] ? answers[1].label : '',
-    q3_vibe: answers[2] ? answers[2].label : '',
+    q2_hotel: answers[1] ? answers[1].label : '',
+    q3_food: answers[2] ? answers[2].label : '',
     q4_afternoon: answers[3] ? answers[3].label : '',
     q5_lastday: answers[4] ? answers[4].label : '',
     memo: ""
@@ -151,41 +151,40 @@ export function renderTimeline() {
     <!-- 2일차 -->
     <div onclick="window.focusPlace(${answers[0].lat}, ${answers[0].lng}, '${answers[0].placeName}')" class="p-3.5 bg-orange-50/50 hover:bg-orange-50 rounded-xl border border-orange-100 cursor-pointer transition">
       <div class="flex items-center justify-between font-bold text-orange-900 mb-1">
-        <span>🌊 2일 차 (11/14 토) 서부 해안 & 온수풀</span>
+        <span>🌊 2일 차 (11/14 토) 협재 감성 세트 & 온수풀 호캉스</span>
         <span class="text-[10px] text-orange-400">터치 시 지도 이동</span>
       </div>
       <div class="text-gray-600 space-y-1">
-        <p>• <b>오전</b>: 렌터카 인수 → 협재해변 & 카페 <a href="https://map.naver.com/p/search/제주%20잔물결" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[잔물결]</a></p>
-        <p>• <b>점심</b>: <a href="${answers[1].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[1].label}</a></p>
+        <p>• <b>오전</b>: 렌터카 인수 → 협재 감성 세트 (협재해변 & 소품샵 <a href="https://map.naver.com/p/search/오달콤제주%20협재점" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[오달콤제주]</a> & 카페 <a href="https://map.naver.com/p/search/제주%20잔물결" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[잔물결]</a>)</p>
+        <p>• <b>점심</b>: 협재 바다 앞 수우동 or 진한 보말칼국수</p>
         <p>• <b>오후</b>: <a href="${answers[0].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[0].label}</a></p>
-        <p>• <b>숙소 & 저녁</b>: <a href="https://map.naver.com/p/search/히든클리프호텔" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">히든클리프</a> 온수풀 & 흑돼지 만찬</p>
+        <p>• <b>숙소 & 저녁</b>: <a href="${answers[1].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[1].placeName}</a> 체크인 & 온수풀 수영, 저녁 흑돼지 만찬!</p>
       </div>
     </div>
 
     <!-- 3일차 -->
     <div onclick="window.focusPlace(${answers[3].lat}, ${answers[3].lng}, '${answers[3].placeName}')" class="p-3.5 bg-orange-50/50 hover:bg-orange-50 rounded-xl border border-orange-100 cursor-pointer transition">
       <div class="flex items-center justify-between font-bold text-orange-900 mb-1">
-        <span>🍊 3일 차 (11/15 일) 따뜻한 남부 서귀포</span>
+        <span>🍊 3일 차 (11/15 일) 따뜻한 서귀포 남쪽 데이트</span>
         <span class="text-[10px] text-orange-400">터치 시 지도 이동</span>
       </div>
       <div class="text-gray-600 space-y-1">
-        <p>• <b>오전</b>: 연박 늦잠 & 카페 <a href="https://map.naver.com/p/search/비브레이브%20혁신도시점" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[비브레이브]</a></p>
+        <p>• <b>오전</b>: 연박 늦잠 & 카페 <a href="https://map.naver.com/p/search/비브레이브%20혁신도시점" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[비브레이브]</a> (시그니처 로쉐커피)</p>
         <p>• <b>점심</b>: <a href="${answers[2].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[2].label}</a></p>
         <p>• <b>오후</b>: <a href="${answers[3].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[3].label}</a></p>
-        <p>• <b>저녁</b>: 서귀포 고등어회·딱새우회 한상 & 와인 한잔</p>
+        <p>• <b>저녁</b>: 서귀포 고등어회·딱새우회 & <a href="${answers[1].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[1].placeName}</a> 룸에서 와인 한잔</p>
       </div>
     </div>
 
     <!-- 4일차 -->
     <div onclick="window.focusPlace(${answers[4].lat}, ${answers[4].lng}, '${answers[4].placeName}')" class="p-3.5 bg-orange-50/50 hover:bg-orange-50 rounded-xl border border-orange-100 cursor-pointer transition">
       <div class="flex items-center justify-between font-bold text-orange-900 mb-1">
-        <span>✈️ 4일 차 (11/16 월) 동부 숲길 & 공항 복귀</span>
+        <span>✈️ 4일 차 (11/16 월) 동부 감성 마무리 & 공항 복귀</span>
         <span class="text-[10px] text-orange-400">터치 시 지도 이동</span>
       </div>
       <div class="text-gray-600 space-y-1">
-        <p>• <b>오전</b>: <a href="${answers[4].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[4].label}</a></p>
         <p>• <b>점심</b>: <a href="https://map.naver.com/p/search/교래손칼국수" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[교래손칼국수]</a> (토종닭칼국수)</p>
-        <p>• <b>오후 카페</b>: <a href="https://map.naver.com/p/search/함덕%20델문도" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">[함덕 델문도]</a> 에메랄드 바다 감상</p>
+        <p>• <b>오후 카페 & 힐링</b>: <a href="${answers[4].link}" target="_blank" onclick="event.stopPropagation();" class="text-orange-600 underline font-semibold">${answers[4].label}</a></p>
         <p>• <b>복귀</b>: 18:30 렌터카 반납 → 20:00 김포행 탑승</p>
       </div>
     </div>
@@ -201,8 +200,8 @@ export function finishSelection() {
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
     typeBadge: document.getElementById('res-badge') ? document.getElementById('res-badge').innerText : '',
     q1_course: answers[0] ? answers[0].label : '',
-    q2_food: answers[1] ? answers[1].label : '',
-    q3_vibe: answers[2] ? answers[2].label : '',
+    q2_hotel: answers[1] ? answers[1].label : '',
+    q3_food: answers[2] ? answers[2].label : '',
     q4_afternoon: answers[3] ? answers[3].label : '',
     q5_lastday: answers[4] ? answers[4].label : '',
     memo: memo
@@ -263,10 +262,10 @@ export function copySummaryToClipboard() {
     `🍊 11월 제주 여행 취향 픽 결과`,
     `• 결과: ${badge}`,
     `• 2일차 오후: ${answers[0].placeName}`,
-    `• 2일차 맛집: ${answers[1].placeName}`,
+    `• 2~3일차 숙소: ${answers[1].placeName}`,
     `• 3일차 식당: ${answers[2].placeName}`,
     `• 3일차 데이트: ${answers[3].placeName}`,
-    `• 4일차 코스: ${answers[4].placeName}`,
+    `• 4일차 마무리: ${answers[4].placeName}`,
     memo ? `• 메모: ${memo}` : ''
   ].filter(Boolean).join('\n');
 

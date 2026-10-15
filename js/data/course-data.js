@@ -18,19 +18,12 @@ export const FIXED_LOCATIONS = {
     link: "https://map.naver.com/p/search/제주노블레스관광호텔",
     desc: "1일차 숙소 (공항 택시 7분)"
   },
-  hotelDay23: {
-    name: "히든클리프 호텔&네이쳐",
-    lat: 33.2550,
-    lng: 126.4025,
-    link: "https://map.naver.com/p/search/히든클리프호텔",
-    desc: "2~3일차 숙소 (사계절 온수 인피니티 풀)"
-  },
-  cafeWest: {
-    name: "잔물결 (한림 협재)",
-    lat: 33.3912,
-    lng: 126.2335,
+  cafeWestSet: {
+    name: "협재 감성 세트 (잔물결 & 오달콤제주)",
+    lat: 33.3940,
+    lng: 126.2395,
     link: "https://map.naver.com/p/search/제주%20잔물결",
-    desc: "2일차 오전 고정 카페 (돌담 감성 드립커피)"
+    desc: "협재 바다 산책 + 감성 소품샵(오달콤제주) + 돌담 드립커피(잔물결)"
   },
   cafeSouth: {
     name: "비브레이브 혁신도시점",
@@ -45,13 +38,6 @@ export const FIXED_LOCATIONS = {
     lng: 126.6730,
     link: "https://map.naver.com/p/search/교래손칼국수",
     desc: "4일차 점심 (토종닭칼국수)"
-  },
-  cafeEast: {
-    name: "함덕 델문도",
-    lat: 33.5435,
-    lng: 126.6690,
-    link: "https://map.naver.com/p/search/함덕%20델문도",
-    desc: "4일차 오후 고정 카페 (에메랄드 바다 오션뷰)"
   }
 };
 
@@ -59,12 +45,12 @@ export const QUESTIONS = [
   {
     step: "QUESTION 1 / 5",
     title: "2일 차 토요일 오후 코스 🌾",
-    subtitle: "협재 바다 보고 커피 마신 뒤, 오후엔 어디 갈까?",
+    subtitle: "협재에서 여유 부린 뒤, 오후엔 어디 갈까?",
     options: [
       {
         type: "A",
         emoji: "🌾",
-        label: "새별오름 초입 억새밭 산책 (적당히 걷기)",
+        label: "새별오름 초입 (은빛 억새밭 가볍게 인생샷 산책)",
         desc: "정상까진 안 가고 초입 능선에서 은빛 억새랑 노을 인생샷 찍기!",
         placeName: "새별오름 억새밭",
         category: "spot",
@@ -76,8 +62,8 @@ export const QUESTIONS = [
       {
         type: "B",
         emoji: "🖼️",
-        label: "바람 피해 감성 미술관 (본태박물관)",
-        desc: "추운 건 딱 질색! 안도 타다오 건축물과 무한거울방 실내 전시 관람",
+        label: "본태박물관 (안도 타다오 건축 & 무한거울방 전시)",
+        desc: "바람 피해 실내에서 세계적인 안도 타다오 건축물과 환상적인 거울방 관람!",
         placeName: "본태박물관",
         category: "spot",
         day: 2,
@@ -87,71 +73,71 @@ export const QUESTIONS = [
       },
       {
         type: "C",
-        emoji: "⛰️",
-        label: "운동화 신은 김에 새별오름 정상 정복!",
-        desc: "20분 으쌰으쌰 올라가서 서쪽 바다랑 한라산 파노라마 뷰 내려다보기",
-        placeName: "새별오름 정상",
+        emoji: "⛪",
+        label: "방주교회 & 카멜리아힐 (물 위의 교회 & 애기동백)",
+        desc: "물 위에 뜬 방주교회 건축물 감상하고 일찍 핀 붉은 애기동백 꽃길 걷기!",
+        placeName: "방주교회 & 카멜리아힐",
         category: "spot",
         day: 2,
-        lat: 33.3667,
-        lng: 126.3578,
-        link: "https://map.naver.com/p/search/제주%20새별오름"
+        lat: 33.3051,
+        lng: 126.3872,
+        link: "https://map.naver.com/p/search/제주%20방주교회"
       }
     ]
   },
   {
     step: "QUESTION 2 / 5",
-    title: "2일 차 토요일 점심 & 저녁 맛집 🍖",
-    subtitle: "저녁은 히든클리프 온수풀 수영 후 흑돼지 코스!",
+    title: "2~3일 차 호캉스 숙소 픽! 🏨",
+    subtitle: "토·일 2박을 보낼 우리의 베이스캠프는?",
     options: [
       {
         type: "A",
-        emoji: "🌿",
-        label: "옹포별장가든(닭샤브) + 숙성도 중문점",
-        desc: "소나무 정원 뷰에서 깔끔한 미나리 닭샤브 먹고, 저녁엔 직원이 구워주는 숙성도!",
-        placeName: "옹포별장가든 & 숙성도",
-        category: "food",
-        day: 2,
-        lat: 33.4012,
-        lng: 126.2580,
-        link: "https://map.naver.com/p/search/제주%20옹포별장가든"
+        emoji: "🌲",
+        label: "히든클리프 호텔 (숲속 온수풀 & 중문 5분 복귀)",
+        desc: "중문 원시림 계곡 온수 인피니티 풀 + 저녁에 흑돼지에 소주 한잔하고 택시 5분 복귀!",
+        placeName: "히든클리프 호텔&네이쳐",
+        category: "hotel",
+        day: [2, 3],
+        lat: 33.2552,
+        lng: 126.4024,
+        link: "https://map.naver.com/p/search/히든클리프호텔"
       },
       {
         type: "B",
-        emoji: "🍱",
-        label: "협재 수우동(오션뷰 돈가스) + 숙성도 중문점",
-        desc: "바다 보며 자작냉우동·돈가스 먹고, 저녁엔 핫플 숙성도 가기!",
-        placeName: "협재 수우동 & 숙성도",
-        category: "food",
-        day: 2,
-        lat: 33.3955,
-        lng: 126.2415,
-        link: "https://map.naver.com/p/search/협재%20수우동"
+        emoji: "🏰",
+        label: "제주 부영호텔 (붉은 벽돌 포토존 & 넓은 객실)",
+        desc: "이국적인 붉은 벽돌 건축물 인생샷 명소! 압도적인 가성비와 넓고 쾌적한 객실",
+        placeName: "제주 부영호텔 & 리조트",
+        category: "hotel",
+        day: [2, 3],
+        lat: 33.2435,
+        lng: 126.4253,
+        link: "https://map.naver.com/p/search/제주부영호텔"
       },
       {
         type: "C",
-        emoji: "🍲",
-        label: "한림칼국수(보말칼국수·보말전) + 돈사돈 중문점",
-        desc: "진한 보말 국물로 든든하게 채우고, 저녁엔 연탄불 흑돼지 근고기 먹기!",
-        placeName: "한림칼국수 & 돈사돈",
-        category: "food",
-        day: 2,
-        lat: 33.4130,
-        lng: 126.2640,
-        link: "https://map.naver.com/p/search/한림칼국수%20제주본점"
+        emoji: "🌴",
+        label: "토스카나 호텔 (이탈리아 휴양지 & 34도 온수풀)",
+        desc: "이탈리아 휴양지 감성 야자수 뷰 대형 온수풀에서 조용하고 로맨틱한 휴식!",
+        placeName: "토스카나 호텔",
+        category: "hotel",
+        day: [2, 3],
+        lat: 33.2678,
+        lng: 126.4862,
+        link: "https://map.naver.com/p/search/토스카나호텔"
       }
     ]
   },
   {
     step: "QUESTION 3 / 5",
-    title: "3일 차 일요일 서귀포 식당 분위기 🐟",
-    subtitle: "서귀포에서 먹을 점심 & 저녁 식당 스타일은?",
+    title: "3일 차 일요일 식당 분위기 🐟",
+    subtitle: "일요일 갈치 & 회, 어떤 분위기가 좋아?",
     options: [
       {
         type: "A",
         emoji: "✨",
-        label: "깔끔·모던 제주 한상차림 (고집돌우럭 중문점)",
-        desc: "우럭조림+옥돔구이+낭푼밥 정갈하고 쾌적하게 먹는 코스!",
+        label: "정갈하고 예쁜 한상 (고집돌우럭 정식 + 깔끔 횟집)",
+        desc: "우럭조림+옥돔구이 정갈한 한상차림 먹고, 저녁엔 깔끔한 중문 횟집!",
         placeName: "고집돌우럭 중문점",
         category: "food",
         day: 3,
@@ -162,8 +148,8 @@ export const QUESTIONS = [
       {
         type: "B",
         emoji: "🥢",
-        label: "통갈치 한상차림 (운정이네) & 감성 횟집",
-        desc: "제주 오면 갈치 해체쇼 한번 봐줘야지! 저녁엔 딱새우 포장해서 호텔에서 한잔",
+        label: "감성 다이닝 & 룸파티 (운정이네 통갈치 + 와인 한잔)",
+        desc: "낮엔 푸짐한 통갈치조림, 밤엔 호텔 룸에서 딱새우+고등어회 포장해서 와인 한잔!",
         placeName: "운정이네 중문점",
         category: "food",
         day: 3,
@@ -174,8 +160,8 @@ export const QUESTIONS = [
       {
         type: "C",
         emoji: "🍶",
-        label: "서귀포 올레시장 & 현지인 찐 노포 (네거리식당·자리돔횟집)",
-        desc: "갈치국·고등어회 찐 로컬 맛집 정복하고 올레시장 야시장 간식 투어!",
+        label: "서귀포 로컬 찐 노포 (블루리본 네거리식당 & 올레시장)",
+        desc: "블루리본 네거리식당 갈치국 + 자리돔횟집 고등어회 찐 현지인 맛집 정복!",
         placeName: "네거리식당 & 올레시장",
         category: "food",
         day: 3,
@@ -188,12 +174,12 @@ export const QUESTIONS = [
   {
     step: "QUESTION 4 / 5",
     title: "3일 차 일요일 남부 오후 데이트 🌸",
-    subtitle: "남원·위미 동백꽃 필 무렵, 오후에 하고 싶은 것은?",
+    subtitle: "따뜻한 서귀포 남쪽, 어디서 힐링할까?",
     options: [
       {
         type: "A",
         emoji: "🌺",
-        label: "쇠소깍 물빛 산책 + 휴애리 동백꽃 & 귤따기",
+        label: "쇠소깍 & 휴애리 (물빛 산책 & 동백꽃길 귤따기)",
         desc: "비취색 물빛 보며 걷고, 휴애리에서 활짝 핀 동백꽃 인생샷 & 감귤 따기 체험!",
         placeName: "휴애리 자연생활공원",
         category: "spot",
@@ -204,22 +190,22 @@ export const QUESTIONS = [
       },
       {
         type: "B",
-        emoji: "☕",
-        label: "쇠소깍 + 테라로사 감귤밭 정원 + 카멜리아힐",
-        desc: "벽돌 감성 카페 정원에서 커피 마시며 여유롭게 힐링 산책하기",
-        placeName: "테라로사 서귀포점",
+        emoji: "🌿",
+        label: "베케(VEKE) & 쇠소깍 (환상적인 이끼정원 통창 카페)",
+        desc: "조경가가 만든 환상적인 이끼정원 통창 카페에서 여유롭게 힐링 산책 & 커피!",
+        placeName: "베케 (VEKE)",
         category: "cafe",
         day: 3,
-        lat: 33.2525,
-        lng: 126.6230,
-        link: "https://map.naver.com/p/search/테라로사%20서귀포점"
+        lat: 33.2655,
+        lng: 126.6083,
+        link: "https://map.naver.com/p/search/베케"
       },
       {
         type: "C",
         emoji: "🛶",
-        label: "쇠소깍 전통 조각배(카약) 탑승 + 휴애리 풀코스",
-        desc: "에메랄드 계곡 물 위에서 조각배 노 젓고, 흑돼지쇼까지 알차게 즐기기!",
-        placeName: "쇠소깍 전통나룻배",
+        label: "쇠소깍 카약 체험 & 휴애리 풀코스",
+        desc: "에메랄드 계곡 물 위에서 전통 조각배 노 젓고, 동백꽃 인생샷까지 알차게 즐기기!",
+        placeName: "쇠소깍 전통나룻배 & 휴애리",
         category: "spot",
         day: 3,
         lat: 33.2530,
@@ -230,44 +216,44 @@ export const QUESTIONS = [
   },
   {
     step: "QUESTION 5 / 5",
-    title: "4일 차 월요일 체력 안배 & 복귀 🚂",
-    subtitle: "동부 숲길 걷고 교래칼국수 먹은 뒤, 마지막 코스는?",
+    title: "4일 차 월요일 함덕 마무리 & 복귀 🌊",
+    subtitle: "서울 가기 전 함덕에서 마지막 커피와 빵은?",
     options: [
       {
         type: "A",
-        emoji: "🚂",
-        label: "에코랜드 기차 숲길 투어 + 함덕 델문도 여유",
-        desc: "빨간 숲속 기차 타고 역마다 내려서 곶자왈 호수 산책! 마지막은 함덕 바다 멍때리기",
-        placeName: "에코랜드 테마파크",
-        category: "spot",
+        emoji: "🌊",
+        label: "함덕 델문도 (바다 바로 앞 탁 트인 오션뷰 물멍)",
+        desc: "에메랄드빛 바다 바로 코앞에서 파도 소리 들으며 시원하게 물멍 때리기!",
+        placeName: "함덕 델문도",
+        category: "cafe",
         day: 4,
-        lat: 33.4485,
-        lng: 126.6710,
-        link: "https://map.naver.com/p/search/에코랜드테마파크"
+        lat: 33.5435,
+        lng: 126.6690,
+        link: "https://map.naver.com/p/search/함덕%20델문도"
       },
       {
         type: "B",
-        emoji: "🌾",
-        label: "산굼부리 평지 억새길 40분 + 함덕 델문도 여유",
-        desc: "오르막길 없이 평지 억새밭만 가볍게 걷고, 함덕 오션뷰 카페에서 편하게 쉬다 가기",
-        placeName: "산굼부리",
-        category: "spot",
+        emoji: "🥐",
+        label: "함덕 다니쉬 (골목 감성 갓 구운 사워도우 빵지순례)",
+        desc: "골목 안 아기자기한 감성에서 갓 구운 사워도우와 디저트 & 핸드드립 커피!",
+        placeName: "함덕 다니쉬",
+        category: "cafe",
         day: 4,
-        lat: 33.4315,
-        lng: 126.6895,
-        link: "https://map.naver.com/p/search/제주%20산굼부리"
+        lat: 33.5428,
+        lng: 126.6662,
+        link: "https://map.naver.com/p/search/함덕%20다니쉬"
       },
       {
         type: "C",
-        emoji: "🌊",
-        label: "에코랜드 + 닭머르해안 억새 정자 + 함덕 델문도",
-        desc: "기차 투어도 하고, 공항 가는 길 바닷가 나무 데크길(닭머르)에서 마지막 바다 감상!",
-        placeName: "닭머르해안",
+        emoji: "🌲",
+        label: "안돌오름 비밀의숲 + 델문도 (피톤치드 편백나무숲 & 바다)",
+        desc: "피톤치드 가득한 편백나무 숲길 들러 인생샷 남기고 함덕 바다 오션뷰 카페 즐기기!",
+        placeName: "안돌오름 비밀의숲",
         category: "spot",
         day: 4,
-        lat: 33.5360,
-        lng: 126.6125,
-        link: "https://map.naver.com/p/search/닭머르해안"
+        lat: 33.4565,
+        lng: 126.7770,
+        link: "https://map.naver.com/p/search/비밀의숲"
       }
     ]
   }
@@ -276,17 +262,17 @@ export const QUESTIONS = [
 export const TYPE_INFO = {
   A: {
     badge: "제1안: 밸런스 정석형 당첨 ✨",
-    title: "자연 감성 & 깔끔 맛집의 황금 비율",
-    desc: "적당히 걷고 인생샷도 남기면서, 식당은 깔끔하고 정갈한 곳으로 고른 가장 만족도 높은 코스!"
+    title: "자연 감성 & 온수풀 호캉스의 정석 비율",
+    desc: "탁 트인 억새밭과 에메랄드 바다, 따뜻한 온수풀과 정갈한 맛집까지 고루 누리는 완벽한 힐링 코스!"
   },
   B: {
-    badge: "제2안: 여유 & 무드 집중형 당첨 ☕",
-    title: "추위·피로 제로! 감성 공간 & 힐링 코스",
-    desc: "무리해서 걷지 않고 따뜻한 실내 전시, 온실, 오션뷰 통창 카페 위주로 여유롭게 즐기는 힐링 여행!"
+    badge: "제2안: 여유 & 감성 다이닝형 당첨 ☕",
+    title: "추위·피로 제로! 감성 건축 & 로맨틱 다이닝",
+    desc: "안도타다오 전시, 비밀 이끼정원 카페, 갓 구운 사워도우 빵지순례와 호텔 룸 와인 파티를 즐기는 감성 여행!"
   },
   C: {
     badge: "제3안: 액티브 & 로컬 미식형 당첨 🔥",
-    title: "운동화 본전 뽑는 자연 완주 & 찐 노포 탐방",
-    desc: "오름 정상부터 곶자왈 숲길, 서귀포 현지인 노포 맛집까지 빠짐없이 챙기는 알찬 여행!"
+    title: "동백꽃·카약 체험 & 서귀포 찐 노포 탐방",
+    desc: "물 위의 교회와 쇠소깍 조각배, 피톤치드 숲길부터 블루리본 현지인 맛집까지 알차게 정복하는 미식 여행!"
   }
 };
