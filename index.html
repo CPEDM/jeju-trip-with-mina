@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>11월 제주 여행 취향 밸런스 게임 🍊</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Leaflet 지도 CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- 축하 효과 (canvas-confetti) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- 커스텀 스타일 -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="min-h-screen flex flex-col items-center justify-center p-3 sm:p-5">
+
+  <!-- 메인 모바일 컨테이너 -->
+  <div class="w-full max-w-md bg-white rounded-3xl shadow-xl border border-orange-100 overflow-hidden my-2">
+
+    <!-- 상단 헤더 -->
+    <div
+      class="bg-gradient-to-r from-orange-400 via-amber-500 to-orange-500 p-6 text-white text-center relative overflow-hidden">
+      <div class="absolute -right-4 -bottom-4 text-6xl opacity-20 pointer-events-none">🍊</div>
+      <p class="text-xs font-semibold tracking-widest uppercase opacity-90">2026. 11. 13 (금) - 11. 16 (월)</p>
+      <h1 class="text-2xl font-black mt-1">제주 여행 취향 밸런스 게임 🍊</h1>
+      <p class="text-xs opacity-90 mt-1">3박 4일 취향 맞춤 힐링 코스 찾기</p>
+    </div>
+
+    <!-- 1. 인트로 화면 -->
+    <div id="intro-screen" class="p-6 text-center fade-in">
+      <div class="text-5xl mb-4 animate-bounce">✈️🗺️☕</div>
+      <h2 class="text-xl font-bold text-gray-800 mb-2">제주도로 퇴근하자! ✈️</h2>
+      <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-5">
+        11월 13일 금요일, 퇴근하자마자 제주도로 슝 날아가자!<br />
+        3박 4일 동안 가보고 싶은 곳 편하게 골라줘요~<br />
+        네 취향 맞춰서 동선이랑 맛집 예약 완벽하게 준비해둘게~!
+      </p>
+
+      <!-- 고정 확정 정보 카드 -->
+      <div
+        class="bg-orange-50/80 rounded-2xl p-4 text-left text-xs text-gray-700 space-y-2 mb-6 border border-orange-200">
+        <div class="flex items-center gap-1.5 font-bold text-orange-800 text-xs">
+          <span>📌</span><span>미리 찜해둔 기본 일정 & 거점</span>
+        </div>
+        <p>• <b>일정</b>: 11/13(금) 퇴근 후 야간 출발 ~ 11/16(월) 20:00 복귀</p>
+        <p>• <b>고정 카페 3곳</b>:
+          <a href="https://map.naver.com/p/search/제주%20잔물결" target="_blank"
+            class="underline text-orange-600 font-semibold">잔물결</a>(서부) ·
+          <a href="https://map.naver.com/p/search/비브레이브%20혁신도시점" target="_blank"
+            class="underline text-orange-600 font-semibold">비브레이브</a>(남부) ·
+          <a href="https://map.naver.com/p/search/함덕%20델문도" target="_blank"
+            class="underline text-orange-600 font-semibold">델문도</a>(동부)
+        </p>
+        <p>• <b>숙소</b>: 1박 제주노블레스 + 2~3박 <a href="https://map.naver.com/p/search/히든클리프호텔"
+            target="_blank" class="underline text-orange-600 font-semibold">히든클리프(온수 인피니티풀)</a></p>
+      </div>
+
+      <button onclick="startGame()"
+        class="w-full py-4 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-2xl shadow-lg shadow-orange-500/30 transition text-base">
+        밸런스 게임 시작하기 👉
+      </button>
+    </div>
+
+    <!-- 2. 질문 화면 -->
+    <div id="question-screen" class="p-6 hidden">
+      <div class="flex items-center justify-between mb-2">
+        <button id="btn-prev-question" onclick="prevQuestion()"
+          class="invisible text-xs text-orange-600 hover:text-orange-800 font-semibold flex items-center gap-1 transition">
+          ← 이전 질문
+        </button>
+        <div class="flex items-center gap-2">
+          <span id="q-step" class="text-xs font-bold tracking-wider text-orange-600">QUESTION 1 / 5</span>
+          <span id="q-percent"
+            class="bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full text-[11px] font-semibold">20%</span>
+        </div>
+      </div>
+      <div class="w-full bg-gray-100 h-2.5 rounded-full mb-5 overflow-hidden">
+        <div id="progress-bar" class="bg-orange-500 h-full transition-all duration-300 rounded-full"
+          style="width: 20%;"></div>
+      </div>
+
+      <h2 id="q-title" class="text-lg font-bold text-gray-900 mb-1 leading-snug"></h2>
+      <p id="q-subtitle" class="text-xs text-gray-500 mb-4"></p>
+
+      <!-- 선택지 리스트 -->
+      <div id="options-container" class="space-y-3"></div>
+    </div>
+
+    <!-- 3. 결과 및 종합 대시보드 화면 -->
+    <div id="result-screen" class="p-5 hidden fade-in">
+      <div class="text-center mb-4">
+        <span class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded-full text-xs font-bold mb-1.5"
+          id="res-badge"></span>
+        <h2 class="text-xl font-extrabold text-gray-900" id="res-title"></h2>
+        <p class="text-xs text-gray-600 mt-1 leading-relaxed" id="res-desc"></p>
+      </div>
+
+      <!-- 종합 지도 섹션 (필터 탭 + 인터랙티브 맵) -->
+      <div class="mb-5 bg-white rounded-2xl border border-gray-200 p-3 shadow-sm">
+        <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">🗺️</span>
+            <h3 class="text-xs font-bold text-gray-800">취향 픽 3박 4일 여행 지도</h3>
+          </div>
+          <span class="text-[10px] text-orange-600 font-semibold bg-orange-50 px-2 py-0.5 rounded-md">반시계 루프</span>
+        </div>
+
+        <!-- 지도 일차별 필터 버튼 -->
+        <div class="flex gap-1 mb-2.5 overflow-x-auto pb-1 text-[11px]">
+          <button onclick="filterMap('all')" id="btn-filter-all"
+            class="filter-btn px-2.5 py-1 rounded-lg font-bold bg-orange-500 text-white shadow-xs">전체 동선</button>
+          <button onclick="filterMap('day1')" id="btn-filter-day1"
+            class="filter-btn px-2.5 py-1 rounded-lg font-medium bg-gray-100 text-gray-600 hover:bg-orange-100">1일차</button>
+          <button onclick="filterMap('day2')" id="btn-filter-day2"
+            class="filter-btn px-2.5 py-1 rounded-lg font-medium bg-gray-100 text-gray-600 hover:bg-orange-100">2일차</button>
+          <button onclick="filterMap('day3')" id="btn-filter-day3"
+            class="filter-btn px-2.5 py-1 rounded-lg font-medium bg-gray-100 text-gray-600 hover:bg-orange-100">3일차</button>
+          <button onclick="filterMap('day4')" id="btn-filter-day4"
+            class="filter-btn px-2.5 py-1 rounded-lg font-medium bg-gray-100 text-gray-600 hover:bg-orange-100">4일차</button>
+        </div>
+
+        <!-- 지도 본체 -->
+        <div id="map" class="border border-gray-100 shadow-inner"></div>
+
+        <!-- 지도 범례 -->
+        <div class="flex items-center justify-center gap-3 mt-2 text-[10px] text-gray-500">
+          <span class="flex items-center gap-1"><span
+              class="w-2 h-2 rounded-full bg-orange-600 inline-block"></span>순서</span>
+          <span class="flex items-center gap-1"><span
+              class="w-2 h-2 rounded-full bg-purple-500 inline-block"></span>숙소</span>
+          <span class="flex items-center gap-1"><span
+              class="w-2 h-2 rounded-full bg-amber-600 inline-block"></span>카페</span>
+          <span class="flex items-center gap-1"><span
+              class="w-2 h-2 rounded-full bg-red-500 inline-block"></span>맛집</span>
+          <span class="flex items-center gap-1"><span
+              class="w-2 h-2 rounded-full bg-blue-500 inline-block"></span>명소</span>
+        </div>
+      </div>
+
+      <!-- 완성된 3박 4일 상세 타임라인 -->
+      <div class="mb-5">
+        <div class="flex items-center justify-between mb-2">
+          <h3 class="text-xs font-bold text-gray-800 flex items-center gap-1.5">
+            <span>🗓️</span><span>3박 4일 세부 타임라인 & 장소</span>
+          </h3>
+          <span class="text-[10px] text-gray-400">카드를 누르면 지도가 이동해요!</span>
+        </div>
+        <div id="itinerary-container" class="space-y-2.5 text-xs"></div>
+      </div>
+
+      <!-- 추가 코멘트 / 궁금한 점 입력란 -->
+      <div class="bg-orange-50/70 rounded-2xl p-4 mb-5 border border-orange-200">
+        <label for="custom-memo" class="block text-xs font-bold text-orange-950 mb-1.5 flex items-center gap-1">
+          <span>💬</span><span>민아야, 혹시 더 가보고 싶은 곳이나 먹고 싶은 거 있어?</span>
+        </label>
+        <textarea id="custom-memo" rows="3" placeholder="예) 아기자기한 소품샵도 꼭 들르자! / 저녁엔 딱새우회 포장해서 호텔에서 먹자 등 편하게 적어줘 😊"
+          class="w-full p-3 rounded-xl border border-orange-200 text-xs text-gray-800 focus:outline-none focus:ring-2 focus:ring-orange-400 bg-white placeholder-gray-400"></textarea>
+      </div>
+
+      <!-- 액션 버튼 -->
+      <div class="space-y-2.5">
+        <button onclick="finishSelection()"
+          class="w-full py-4 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 text-white font-bold rounded-2xl shadow-lg shadow-orange-500/30 transition flex items-center justify-center gap-2 text-base">
+          <span>🍊</span><span>민아 픽 제주 여행 코스 완성!</span>
+        </button>
+        <div class="grid grid-cols-2 gap-2">
+          <button onclick="copySummaryToClipboard()"
+            class="py-3 bg-orange-100 hover:bg-orange-200 text-orange-700 font-semibold rounded-2xl text-xs transition flex items-center justify-center gap-1">
+            <span>📋</span><span>요약 텍스트 복사</span>
+          </button>
+          <button onclick="resetGame()"
+            class="py-3 bg-gray-100 hover:bg-gray-200 text-gray-600 font-semibold rounded-2xl text-xs transition">
+            처음부터 다시 ↺
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 4. '선택 완료!' 축하 모달 -->
+  <div id="complete-modal"
+    class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div
+      class="w-full max-w-sm bg-white rounded-3xl p-7 text-center shadow-2xl border border-orange-100 transform transition-all duration-300 scale-95 opacity-0"
+      id="modal-card">
+      <div
+        class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4 text-4xl shadow-inner">
+        🍊
+      </div>
+      <span class="inline-block px-3 py-1 bg-orange-50 text-orange-600 rounded-full text-[11px] font-bold mb-2">
+        2026. 11. 13 - 11. 16 JEJU
+      </span>
+      <h3 class="text-2xl font-black text-gray-900 mb-2">선택 완료! ❤️</h3>
+      <p class="text-xs text-gray-600 leading-relaxed mb-6">
+        민아야, 고르느라 고생했어! 🥰<br /><br />
+        민아가 픽한 코스 바탕으로<br />
+        <b class="text-orange-600">렌터카, 맛집 예약, 동선</b>까지 내가 완벽하게 준비해둘게 🚗<br /><br />
+        11월 13일 금요일 퇴근하고<br />
+        설레는 마음으로 공항에서 만나자! ✈️
+      </p>
+
+      <div class="space-y-2">
+        <button onclick="closeCompleteModal()"
+          class="w-full py-3.5 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-2xl text-xs shadow-md shadow-orange-500/20 transition">
+          🗺️ 내가 고른 지도 & 일정 다시 보기
+        </button>
+        <button onclick="resetGame()"
+          class="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-500 font-medium rounded-2xl text-xs transition">
+          처음부터 다시 골라보기 ↺
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 메인 모듈 로드 -->
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

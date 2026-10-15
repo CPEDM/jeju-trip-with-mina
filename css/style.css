@@ -1,0 +1,53 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  background-color: #FFFDF9;
+  color: #1F2937;
+  -webkit-font-smoothing: antialiased;
+}
+
+.fade-in {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.option-card:active {
+  transform: scale(0.98);
+}
+
+#map {
+  height: 300px;
+  width: 100%;
+  border-radius: 1rem;
+  z-index: 10;
+}
+
+.custom-pin {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+  border: 2.5px solid white;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.pin-route { background: #EA580C; color: white; }
+.pin-spot  { background: #3B82F6; color: white; }
+.pin-cafe  { background: #D97706; color: white; }
+.pin-hotel { background: #8B5CF6; color: white; }
+.pin-food  { background: #EF4444; color: white; }
