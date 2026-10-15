@@ -9,6 +9,7 @@ import { sendSilentlyToSheet } from './webhook.js';
 
 let currentIdx = 0;
 let answers = [];
+let sessionId = "";
 
 export function startGame() {
   document.getElementById('intro-screen').classList.add('hidden');
@@ -16,6 +17,7 @@ export function startGame() {
   document.getElementById('result-screen').classList.add('hidden');
   currentIdx = 0;
   answers = [];
+  sessionId = "sess_" + Date.now() + "_" + Math.random().toString(36).substr(2, 5);
   renderQuestion();
 }
 
@@ -111,6 +113,7 @@ export function showResult() {
 
   // 질문 모두 응답 즉시 스프레드시트로 무음 자동 전송!
   const immediatePayload = {
+    sessionId: sessionId,
     name: "민아",
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
     typeBadge: typeData.badge,
@@ -205,6 +208,7 @@ export function finishSelection() {
   const memo = memoEl ? memoEl.value.trim() : '';
 
   const payload = {
+    sessionId: sessionId,
     name: "민아",
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
     typeBadge: document.getElementById('res-badge') ? document.getElementById('res-badge').innerText : '',

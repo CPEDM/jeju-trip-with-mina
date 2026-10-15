@@ -1,9 +1,14 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "JejuTripSelectionPayload",
-  "description": "민아가 질문을 진행하거나 '선택 완료!'를 눌렀을 때 백그라운드에서 전송되는 JSON 페이로드 규격 (총 7문항)",
+  "description": "민아가 질문을 진행하거나 '선택 완료!'를 눌렀을 때 백그라운드에서 전송되는 JSON 페이로드 규격 (총 7문항 스마트 중복방지 지원)",
   "type": "object",
   "properties": {
+    "sessionId": {
+      "type": "string",
+      "example": "sess_1792095000000_a1b2c",
+      "description": "사용자 세션 고유 식별자 (1차 즉시 전송과 2차 메모 전송 간 UPSERT 스마트 매핑용)"
+    },
     "name": {
       "type": "string",
       "default": "민아",
