@@ -40,7 +40,7 @@ export function initMap() {
     attributionControl: false 
   }).setView([33.3617, 126.5292], 9);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18
   }).addTo(mapInstance);
 
