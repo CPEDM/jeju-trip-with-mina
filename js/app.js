@@ -1,11 +1,6 @@
-/**
- * 제주 여행 밸런스 게임 - 메인 앱 로직 모듈
- * 화면 전환, 선택지 진행/이전, 결과 산출, 타임라인 렌더링, 이벤트 바인딩
- */
-
 import { QUESTIONS, TYPE_INFO } from './data/course-data.js';
 import { buildAllPoints, initMap, filterMap, focusPlace } from './map.js';
-import { sendSilentlyToSheet } from './webhook.js';
+import { syncUserSession } from './webhook.js';
 
 let currentIdx = 0;
 let answers = [];
@@ -40,7 +35,7 @@ export function renderQuestion() {
   document.getElementById('q-title').innerText = q.title;
   document.getElementById('q-subtitle').innerText = q.subtitle;
 
-  // 이전 버튼 노출 여부 제어
+  
   const prevBtn = document.getElementById('btn-prev-question');
   if (prevBtn) {
     if (currentIdx > 0) {
@@ -89,7 +84,7 @@ export function showResult() {
   document.getElementById('result-screen').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // 축하 효과 (canvas-confetti)
+  
   if (typeof confetti === 'function') {
     confetti({
       particleCount: 80,
@@ -98,7 +93,7 @@ export function showResult() {
     });
   }
 
-  // 유형 판정 (가장 많이 선택한 알파벳)
+  
   const counts = { A: 0, B: 0, C: 0 };
   answers.forEach(a => counts[a.type]++);
 
@@ -111,10 +106,9 @@ export function showResult() {
   document.getElementById('res-title').innerText = typeData.title;
   document.getElementById('res-desc').innerText = typeData.desc;
 
-  // 질문 모두 응답 즉시 스프레드시트로 무음 자동 전송!
+  
   const immediatePayload = {
     sessionId: sessionId,
-    name: "민아",
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
     typeBadge: typeData.badge,
     q1_course: answers[0] ? answers[0].label : '',
@@ -124,7 +118,7 @@ export function showResult() {
     q5_lunch: answers[4] ? answers[4].label : '',
     q6_healing: answers[5] ? answers[5].label : '',
     q7_lastday: answers[6] ? answers[6].label : '',
-    // 구글 시트 구버전 호환용 fallback 필드
+    
     q2_hotel: answers[2] ? answers[2].label : '',
     q2_food: answers[3] ? answers[3].label : '',
     q3_food: answers[4] ? answers[4].label : '',
@@ -133,12 +127,12 @@ export function showResult() {
     q5_lastday: answers[6] ? answers[6].label : '',
     memo: ""
   };
-  sendSilentlyToSheet(immediatePayload);
+  syncUserSession(immediatePayload);
 
-  // 세부 타임라인 렌더링
+  
   renderTimeline();
 
-  // 지도 포인트 데이터 빌드 및 렌더링
+  
   buildAllPoints(answers);
   setTimeout(initMap, 150);
 }
@@ -209,7 +203,6 @@ export function finishSelection() {
 
   const payload = {
     sessionId: sessionId,
-    name: "민아",
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
     typeBadge: document.getElementById('res-badge') ? document.getElementById('res-badge').innerText : '',
     q1_course: answers[0] ? answers[0].label : '',
@@ -219,7 +212,7 @@ export function finishSelection() {
     q5_lunch: answers[4] ? answers[4].label : '',
     q6_healing: answers[5] ? answers[5].label : '',
     q7_lastday: answers[6] ? answers[6].label : '',
-    // 구글 시트 구버전 호환용 fallback 필드
+    
     q2_hotel: answers[2] ? answers[2].label : '',
     q2_food: answers[3] ? answers[3].label : '',
     q3_food: answers[4] ? answers[4].label : '',
@@ -229,10 +222,10 @@ export function finishSelection() {
     memo: memo
   };
 
-  // 백그라운드 무음 전송 (결과 대기 없이 즉각 화면 연출)
-  sendSilentlyToSheet(payload);
+  
+  syncUserSession(payload);
 
-  // 축하 모달 팝업 오픈
+  
   const modal = document.getElementById('complete-modal');
   const card = document.getElementById('modal-card');
   if (modal && card) {
@@ -243,7 +236,7 @@ export function finishSelection() {
     }, 10);
   }
 
-  // 2차 축하 콘페티
+  
   if (typeof confetti === 'function') {
     confetti({
       particleCount: 100,
@@ -300,7 +293,6 @@ export function copySummaryToClipboard() {
   });
 }
 
-// 전역 윈도우 바인딩 (인라인 HTML 이벤트 호출 호환)
 window.startGame = startGame;
 window.prevQuestion = prevQuestion;
 window.filterMap = filterMap;

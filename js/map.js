@@ -1,8 +1,3 @@
-/**
- * Leaflet 지도 제어 모듈
- * 3박 4일 일정 마커 렌더링, 일차별 필터링, 경로 폴리라인 및 위치 포커스 기능
- */
-
 let mapInstance = null;
 let currentMarkers = [];
 let currentPolyline = null;
@@ -43,7 +38,7 @@ export function initMap() {
     maxZoom: 18
   }).addTo(mapInstance);
 
-  // 모바일 화면 전환 시 타일 깨짐 방지 (2단계 보정)
+  
   requestAnimationFrame(() => {
     if (mapInstance) mapInstance.invalidateSize();
   });
@@ -57,7 +52,7 @@ export function initMap() {
 export function renderMapPoints(filter = 'all') {
   if (!mapInstance) return;
 
-  // 기존 마커 & 폴리라인 제거
+  
   currentMarkers.forEach(m => mapInstance.removeLayer(m));
   currentMarkers = [];
   if (currentPolyline) {
@@ -120,7 +115,7 @@ export function renderMapPoints(filter = 'all') {
     latlngs.push([p.lat, p.lng]);
   });
 
-  // 점선 연결 (동선 시각화)
+  
   if (latlngs.length > 1) {
     currentPolyline = L.polyline(latlngs, {
       color: '#FB923C',
@@ -130,7 +125,7 @@ export function renderMapPoints(filter = 'all') {
     }).addTo(mapInstance);
   }
 
-  // 필터에 맞게 지도 뷰포트 맞춤
+  
   if (latlngs.length > 0) {
     const bounds = L.latLngBounds(latlngs);
     mapInstance.fitBounds(bounds, { padding: [30, 30], maxZoom: 12 });

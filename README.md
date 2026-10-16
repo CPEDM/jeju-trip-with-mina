@@ -9,15 +9,22 @@
 ```text
 jeju-balance-game/
 ├── index.html                   # 프론트엔드 메인 진입점 (모바일 웹앱)
+├── build.js                     # [빌드 스크립트] src/js 코드를 읽어 주석 제거 후 js/에 배포
+├── build.bat                    # [더블클릭 빌더] 윈도우 탐색기에서 원클릭으로 빌드 실행
 ├── README.md                    # 본 문서 (배포 및 연동 가이드)
+├── src/                         # ⭐ [개발·수정용 원본] 친절한 한글 주석이 온전히 유지되는 폴더
+│   └── js/
+│       ├── app.js               # 메인 앱 로직 원본 (상세 주석 포함)
+│       ├── map.js               # 지도 모듈 원본 (상세 주석 포함)
+│       ├── webhook.js           # 웹훅 모듈 원본 (상세 주석 포함)
+│       └── data/course-data.js  # 코스/질문 데이터 원본 (상세 주석 포함)
+├── js/                          # 🚀 [실행·배포용] 주석 없는 스텔스 클린 버전 (index.html 로드)
+│   ├── app.js
+│   ├── map.js
+│   ├── webhook.js
+│   └── data/course-data.js
 ├── css/
 │   └── style.css                # Pretendard 폰트, 커스텀 지도 핀 및 인터랙션 스타일
-├── js/
-│   ├── app.js                   # 메인 앱 로직 (화면 전환, 이전/다음, 결과 계산, 클립보드 복사)
-│   ├── map.js                   # Leaflet 지도 제어 모듈 (일차별 필터, 마커 렌더링, 뷰포트 맞춤)
-│   ├── webhook.js               # Google Apps Script 무음 웹훅 전송 모듈 (SECRET_WEBHOOK_URL 설정)
-│   └── data/
-│       └── course-data.js       # 5대 질문, 장소명, 위경도 좌표, 네이버 지도 링크 데이터
 ├── backend/                     # 백엔드 수신 스크립트 및 규격
 │   ├── google-apps-script.js    # 구글 스프레드시트 Apps Script 수신 코드 (복사-붙여넣기용)
 │   └── server-payload.spec.json # 서버/웹훅 전송 JSON 페이로드 명세
@@ -25,6 +32,10 @@ jeju-balance-game/
     ├── 00_ARCHITECTURE_MAP.md   # 전체 시스템 아키텍처 및 흐름도
     └── 01_JEJU_COURSE_SPEC.md   # 3박 4일 세부 코스, 장소 위경도 및 링크 정리
 ```
+
+> **💡 개발 팁 (주석 분리 관리)**:
+> 코드를 수정하실 때는 **`src/js/`** 안의 파일을 열어 편하게 주석을 보며 수정하세요.
+> 수정 후 **`build.bat`을 더블클릭**(또는 터미널에서 `node build.js`)하면, 배포용 **`js/`** 폴더에 주석과 민감 단서가 제거된 최신 파일이 0.1초 만에 자동 생성됩니다!
 
 ---
 
