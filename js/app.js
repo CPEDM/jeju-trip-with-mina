@@ -35,7 +35,7 @@ export function renderQuestion() {
   document.getElementById('q-title').innerText = q.title;
   document.getElementById('q-subtitle').innerText = q.subtitle;
 
-  
+
   const prevBtn = document.getElementById('btn-prev-question');
   if (prevBtn) {
     if (currentIdx > 0) {
@@ -91,7 +91,7 @@ export function showResult() {
   document.getElementById('result-screen').classList.remove('hidden');
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  
+
   if (typeof confetti === 'function') {
     confetti({
       particleCount: 80,
@@ -100,7 +100,7 @@ export function showResult() {
     });
   }
 
-  
+
   const counts = { A: 0, B: 0, C: 0 };
   answers.forEach(a => counts[a.type]++);
 
@@ -113,7 +113,7 @@ export function showResult() {
   document.getElementById('res-title').innerText = typeData.title;
   document.getElementById('res-desc').innerText = typeData.desc;
 
-  
+
   const immediatePayload = {
     sessionId: sessionId,
     timestamp: new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
@@ -126,7 +126,7 @@ export function showResult() {
     q6_healing: answers[5] ? answers[5].label : '',
     q7_lastday: answers[6] ? answers[6].label : '',
     q8_lastday: answers[7] ? answers[7].label : '',
-    
+
     r1_morning: answers[0] ? answers[0].label : '',
     r2_lunch: answers[1] ? answers[1].label : '',
     r3_afternoon: answers[2] ? answers[2].label : '',
@@ -139,10 +139,10 @@ export function showResult() {
   };
   syncUserSession(immediatePayload);
 
-  
+
   renderTimeline();
 
-  
+
   buildAllPoints(answers);
   setTimeout(initMap, 150);
 }
@@ -192,7 +192,7 @@ export function renderTimeline() {
     <!-- 3일차 -->
     <div class="p-3.5 bg-orange-50/50 hover:bg-orange-50 rounded-xl border border-orange-100 transition">
       <div class="flex items-center justify-between font-bold text-orange-900 mb-1.5">
-        <span>🍊 3일 차 (11/15 일) 따뜻한 남부 데이트 & 회 한잔</span>
+        <span>🍊 3일 차 (11/15 일) 따뜻한 남부 힐링 & 회 한잔</span>
         <span class="text-[10px] text-orange-400">항목 터치 시 지도 이동</span>
       </div>
       <div class="text-gray-600 space-y-1.5 text-xs leading-relaxed">
@@ -259,10 +259,10 @@ export function finishSelection() {
     memo: memo
   };
 
-  
+
   syncUserSession(payload);
 
-  
+
   const modal = document.getElementById('complete-modal');
   const card = document.getElementById('modal-card');
   if (modal && card) {
@@ -273,7 +273,7 @@ export function finishSelection() {
     }, 10);
   }
 
-  
+
   if (typeof confetti === 'function') {
     confetti({
       particleCount: 100,
