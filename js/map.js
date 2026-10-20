@@ -5,17 +5,19 @@ let allPointsData = [];
 
 export function buildAllPoints(answers) {
   allPointsData = [
-    { id: 1, day: 1, name: "1. 제주공항 & 노블레스호텔", category: "hotel", lat: 33.4988, lng: 126.4880, desc: "1일차 야간 체크인" },
-    { id: 2, day: 2, name: "2. " + answers[0].placeName + " (협재 선택)", category: answers[0].category, lat: answers[0].lat, lng: answers[0].lng, desc: answers[0].label },
-    { id: 3, day: 2, name: "3. " + answers[1].placeName + " (서부 오후)", category: answers[1].category, lat: answers[1].lat, lng: answers[1].lng, desc: answers[1].label },
-    { id: 4, day: [2, 3], name: "4. " + answers[2].placeName + " (선택 숙소)", category: "hotel", lat: answers[2].lat, lng: answers[2].lng, desc: answers[2].label },
-    { id: 5, day: 2, name: "5. " + answers[3].placeName + " (저녁 흑돼지)", category: answers[3].category, lat: answers[3].lat, lng: answers[3].lng, desc: answers[3].label },
-    { id: 6, day: 3, name: "6. 비브레이브 서귀포", category: "cafe", lat: 33.2520, lng: 126.5125, desc: "3일차 오전 시그니처 로쉐커피" },
-    { id: 7, day: 3, name: "7. " + answers[4].placeName + " (선택 식당)", category: answers[4].category, lat: answers[4].lat, lng: answers[4].lng, desc: answers[4].label },
-    { id: 8, day: 3, name: "8. " + answers[5].placeName + " (선택 힐링)", category: answers[5].category, lat: answers[5].lat, lng: answers[5].lng, desc: answers[5].label },
-    { id: 9, day: 4, name: "9. 교래손칼국수", category: "food", lat: 33.4445, lng: 126.6730, desc: "4일차 점심 토종닭칼국수" },
-    { id: 10, day: 4, name: "10. " + answers[6].placeName + " (선택 마무리)", category: answers[6].category, lat: answers[6].lat, lng: answers[6].lng, desc: answers[6].label },
-    { id: 11, day: 4, name: "11. 제주공항 복귀", category: "route", lat: 33.5065, lng: 126.4930, desc: "20:00 김포행 복귀" }
+    { id: 1, day: 1, name: "1. 제주 노블레스호텔", category: "hotel", lat: 33.4988, lng: 126.4880, desc: "1일차 야간 체크인" },
+    { id: 2, day: 2, name: "2. " + answers[0].placeName, category: answers[0].category, lat: answers[0].lat, lng: answers[0].lng, desc: answers[0].label },
+    { id: 3, day: 2, name: "3. " + answers[1].placeName, category: answers[1].category, lat: answers[1].lat, lng: answers[1].lng, desc: answers[1].label },
+    { id: 4, day: 2, name: "4. " + answers[2].placeName, category: answers[2].category, lat: answers[2].lat, lng: answers[2].lng, desc: answers[2].label },
+    { id: 5, day: [2, 3], name: "5. 히든 클리프 호텔 & 네이처", category: "hotel", lat: 33.2552, lng: 126.4024, desc: "2~3박 베이스캠프 (47m 사계절 온수풀)" },
+    { id: 6, day: 2, name: "6. " + answers[3].placeName, category: answers[3].category, lat: answers[3].lat, lng: answers[3].lng, desc: answers[3].label },
+    { id: 7, day: 3, name: "7. 비브레이브 서귀포", category: "cafe", lat: 33.2520, lng: 126.5125, desc: "3일차 오전 시그니처 로쉐커피" },
+    { id: 8, day: 3, name: "8. " + answers[4].placeName, category: answers[4].category, lat: answers[4].lat, lng: answers[4].lng, desc: answers[4].label },
+    { id: 9, day: 3, name: "9. " + answers[5].placeName, category: answers[5].category, lat: answers[5].lat, lng: answers[5].lng, desc: answers[5].label },
+    { id: 10, day: 3, name: "10. " + answers[6].placeName, category: answers[6].category, lat: answers[6].lat, lng: answers[6].lng, desc: answers[6].label },
+    { id: 11, day: 4, name: "11. 교래손칼국수", category: "food", lat: 33.4445, lng: 126.6730, desc: "4일차 점심 토종닭칼국수" },
+    { id: 12, day: 4, name: "12. " + answers[7].placeName, category: answers[7].category, lat: answers[7].lat, lng: answers[7].lng, desc: answers[7].label },
+    { id: 13, day: 4, name: "13. 제주국제공항 복귀", category: "route", lat: 33.5065, lng: 126.4930, desc: "18:30 반납 ➔ 20:00 김포행 복귀" }
   ];
   return allPointsData;
 }

@@ -1,73 +1,62 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "JejuTripSelectionPayload",
-  "description": "민아가 질문을 진행하거나 '선택 완료!'를 눌렀을 때 백그라운드에서 전송되는 JSON 페이로드 규격 (총 7문항 스마트 중복방지 지원)",
+  "title": "JejuTripBalanceGamePayload",
+  "description": "8개 라운드 및 구글 스프레드시트 수신용 JSON 페이로드 명세",
   "type": "object",
   "properties": {
     "sessionId": {
       "type": "string",
-      "example": "sess_1792095000000_a1b2c",
-      "description": "사용자 세션 고유 식별자 (1차 즉시 전송과 2차 메모 전송 간 UPSERT 스마트 매핑용)"
+      "description": "사용자 세션 식별자 (중복 방지 및 스마트 업데이트용)"
     },
     "name": {
       "type": "string",
       "default": "민아",
-      "description": "선택자 이름"
+      "description": "응답자 이름"
     },
     "timestamp": {
       "type": "string",
-      "example": "2026. 11. 1. 오후 9:20:15",
-      "description": "선택 완료 한국 시각"
+      "description": "선택 일시 (한국 시간 KST)"
     },
     "typeBadge": {
       "type": "string",
-      "example": "제1안: 밸런스 정석형 당첨 ✨",
-      "description": "최종 판정된 여행 스타일 뱃지"
+      "description": "판정된 3대 여행 성향 배지"
     },
-    "q1_course": {
+    "r1_morning": {
       "type": "string",
-      "example": "감성 카페 힐링 (잔물결 핸드드립 커피 & 돌담 쉼표)",
-      "description": "2일차 토요일 오전 협재 코스"
+      "description": "Round 1: 2일차 오전 서부 해안 첫 출발"
     },
-    "q2_afternoon": {
+    "r2_lunch": {
       "type": "string",
-      "example": "새별오름 초입 억새밭 산책 (적당히 걷기 & 은빛 인생샷)",
-      "description": "2일차 토요일 오후 서부 코스"
+      "description": "Round 2: 2일차 점심 서부 미식"
     },
-    "q3_hotel": {
+    "r3_afternoon": {
       "type": "string",
-      "example": "히든클리프 호텔 (숲속 온수 인피니티 풀 & 흑돼지 택시 5분)",
-      "description": "2~3일차 토·일 베이스캠프 호캉스 숙소"
+      "description": "Round 3: 2일차 오후 감성 스팟 & 억새"
     },
-    "q4_dinner": {
+    "r4_dinner": {
       "type": "string",
-      "example": "숙성도 중문점 (직원이 직접 구워주는 숙성 흑돼지 & 시원한 쏘맥)",
-      "description": "2일차 토요일 저녁 흑돼지 만찬"
+      "description": "Round 4: 2일차 저녁 중문 흑돼지 & 한잔"
     },
-    "q5_lunch": {
+    "r5_lunch3": {
       "type": "string",
-      "example": "고집돌우럭 중문점 (깔끔하고 정갈한 우럭조림 & 옥돔구이 한상)",
-      "description": "3일차 일요일 점심 서귀포 맛집"
+      "description": "Round 5: 3일차 점심 제주 바다 한상"
     },
-    "q6_healing": {
+    "r6_afternoon3": {
       "type": "string",
-      "example": "휴애리 자연생활공원 (감귤 따기 체험 & 핑크빛 동백꽃 산책)",
-      "description": "3일차 일요일 오후 남부 힐링 데이트"
+      "description": "Round 6: 3일차 오후 온화한 남부 데이트"
     },
-    "q7_lastday": {
+    "r7_dinner3": {
       "type": "string",
-      "example": "카페 델문도 (에메랄드빛 함덕 바다 정면 오션뷰 테라스 카페)",
-      "description": "4일차 월요일 동부 감성 마무리"
+      "description": "Round 7: 3일차 저녁 회 & 한잔"
+    },
+    "r8_finale": {
+      "type": "string",
+      "description": "Round 8: 4일차 피날레 동부 숲길 & 함덕"
     },
     "memo": {
       "type": "string",
-      "example": "수영복 챙겨가자! 흑돼지 먹고 2차로 편의점 털자",
-      "description": "민아가 자유롭게 남긴 코멘트/메모"
+      "description": "민아가 마지막에 남긴 특별 코멘트/메모"
     }
   },
-  "required": [
-    "name",
-    "timestamp",
-    "typeBadge"
-  ]
+  "required": ["sessionId", "timestamp"]
 }

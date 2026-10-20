@@ -7,7 +7,7 @@
  * 구글 스프레드시트에 자동으로 새 행을 추가하거나 직전 행의 메모를 스마트 업데이트합니다.
  *
  * [주요 스마트 기능]
- * 1. 자가 치유형 헤더: 시트가 비어있거나 구버전(10열)이어도 최신 12열 헤더(Q1~Q7)로 자동 승격
+ * 1. 자가 치유형 헤더: 시트가 비어있거나 구버전(10열, 12열)이어도 최신 13열 헤더(R1~R8)로 자동 승격
  * 2. 중복 방지 스마트 갱신 (UPSERT): 결과 화면 진입 시 1차 자동 저장 후,
  *    민아가 메모를 작성하고 완료 버튼을 누르면 직전 행의 메모만 깔끔하게 업데이트!
  * 3. 스크립트 락(LockService): 동시성 제어로 행 번호 꼬임 및 동시 쓰기 충돌 방지
@@ -18,10 +18,10 @@
  * 3. 이 파일의 내용을 복사하여 붙여넣기 후 저장 (Ctrl + S)
  * 4. 우측 상단 [배포] > [새 배포] 클릭
  *    - 유형: 웹 앱 (Web App)
- *    - 설명: 제주 여행 7문항 스마트 수신
+ *    - 설명: 제주 여행 8라운드 풀패키지 스마트 수신
  *    - 다음 사용자 권한으로 실행: 나(내 계정)
  *    - 액세스 권한: 모든 사용자 (Anyone)  <-- 중요!
- * 5. 발급된 웹 앱 URL을 js/webhook.js의 SECRET_WEBHOOK_URL에 입력
+ * 5. 발급된 웹 앱 URL을 js/webhook.js의 API_ENDPOINT에 입력
  */
 
 function doPost(e) {
@@ -31,19 +31,20 @@ function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-    // 12열 표준 최신 헤더 정의
+    // 13열 표준 최신 헤더 정의 (8개 라운드 + 메모)
     var headers = [
       "번호",
       "기록일시",
       "이름",
       "선택 유형",
-      "Q1 2일차 오전 (협재)",
-      "Q2 2일차 오후 (서부)",
-      "Q3 2~3일차 숙소 (호캉스)",
-      "Q4 2일차 저녁 (흑돼지)",
-      "Q5 3일차 점심 (서귀포)",
-      "Q6 3일차 오후 (힐링)",
-      "Q7 4일차 마무리 (동부)",
+      "R1 2일차 오전 (서부 해안)",
+      "R2 2일차 점심 (서부 미식)",
+      "R3 2일차 오후 (감성·억새)",
+      "R4 2일차 저녁 (중문 흑돼지)",
+      "R5 3일차 점심 (바다 한상)",
+      "R6 3일차 오후 (온화한 남부)",
+      "R7 3일차 저녁 (회 & 한잔)",
+      "R8 4일차 피날레 (동부 숲길)",
       "민아의 코멘트/메모"
     ];
 
@@ -57,7 +58,7 @@ function doPost(e) {
       lastRow = 1;
     } else {
       var firstRowValues = sheet.getRange(1, 1, 1, Math.max(lastCol, 1)).getValues()[0];
-      var isOldVersion = firstRowValues.length < 12 || firstRowValues[4] === "Q1 2일차 오후 코스";
+      var isOldVersion = firstRowValues.length < 13 || firstRowValues[4].toString().indexOf("R1") === -1;
       if (isOldVersion) {
         sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
         styleHeader(sheet, headers.length);
@@ -68,14 +69,15 @@ function doPost(e) {
     var rawData = e.postData.contents;
     var data = JSON.parse(rawData);
 
-    // 필드 추출 (신규 7문항 키 우선 + 구버전 호환)
-    var q1 = data.q1_course || "";
-    var q2 = data.q2_afternoon || "";
-    var q3 = data.q3_hotel || data.q2_hotel || data.q2_food || "";
-    var q4 = data.q4_dinner || "";
-    var q5 = data.q5_lunch || data.q3_food || data.q3_vibe || "";
-    var q6 = data.q6_healing || data.q4_afternoon || "";
-    var q7 = data.q7_lastday || data.q5_lastday || "";
+    // 필드 추출 (신규 8라운드 키 우선 + 구버전 호환)
+    var r1 = data.r1_morning || data.q1_course || "";
+    var r2 = data.r2_lunch || data.q2_afternoon || "";
+    var r3 = data.r3_afternoon || data.q3_hotel || "";
+    var r4 = data.r4_dinner || data.q4_dinner || "";
+    var r5 = data.r5_lunch3 || data.q5_lunch || "";
+    var r6 = data.r6_afternoon3 || data.q6_healing || "";
+    var r7 = data.r7_dinner3 || data.q7_lastday || "";
+    var r8 = data.r8_finale || data.q8_lastday || "";
     var memo = data.memo || "";
     var timestamp = data.timestamp || Utilities.formatDate(new Date(), "Asia/Seoul", "yyyy-MM-dd HH:mm:ss");
     var name = data.name || "민아";
@@ -83,14 +85,14 @@ function doPost(e) {
 
     // 3. 중복 방지 (UPSERT): 직전 행이 1차 자동 전송분이고 현재 요청에 메모가 포함되어 있다면 메모 컬럼만 업데이트
     if (lastRow > 1 && memo) {
-      var lastRowData = sheet.getRange(lastRow, 1, 1, 12).getValues()[0];
-      var prevMemo = lastRowData[11] || "";
+      var lastRowData = sheet.getRange(lastRow, 1, 1, 13).getValues()[0];
+      var prevMemo = lastRowData[12] || "";
       var prevType = lastRowData[3] || "";
-      var prevQ1 = lastRowData[4] || "";
+      var prevR1 = lastRowData[4] || "";
 
-      // 이전 행의 선택 유형과 Q1이 일치하고 직전 메모가 비어있다면 -> 동일 세션 2차 전송으로 판별
-      if (prevType === typeBadge && prevQ1 === q1 && (!prevMemo || prevMemo.toString().trim() === "")) {
-        sheet.getRange(lastRow, 12).setValue(memo);
+      // 이전 행의 선택 유형과 R1이 일치하고 직전 메모가 비어있다면 -> 동일 세션 2차 전송으로 판별
+      if (prevType === typeBadge && prevR1 === r1 && (!prevMemo || prevMemo.toString().trim() === "")) {
+        sheet.getRange(lastRow, 13).setValue(memo);
         sheet.getRange(lastRow, 2).setValue(timestamp); // 최종 확정 일시로 갱신
         return ContentService.createTextOutput(JSON.stringify({ status: "success", action: "updated", row: lastRow - 1 }))
           .setMimeType(ContentService.MimeType.JSON);
@@ -104,13 +106,14 @@ function doPost(e) {
       timestamp,
       name,
       typeBadge,
-      q1,
-      q2,
-      q3,
-      q4,
-      q5,
-      q6,
-      q7,
+      r1,
+      r2,
+      r3,
+      r4,
+      r5,
+      r6,
+      r7,
+      r8,
       memo
     ]);
 
@@ -125,11 +128,14 @@ function doPost(e) {
   }
 }
 
-function styleHeader(sheet, colCount) {
-  var headerRange = sheet.getRange(1, 1, 1, colCount);
-  headerRange.setBackground("#FFEDD5"); // 연한 감귤 오렌지
+/**
+ * 첫 번째 행(헤더)을 세련된 주황색/흰색 스타일로 자동 포맷팅
+ */
+function styleHeader(sheet, numCols) {
+  var headerRange = sheet.getRange(1, 1, 1, numCols);
+  headerRange.setBackground("#EA580C"); // 귤빛 오렌지 테마
+  headerRange.setFontColor("#FFFFFF");
   headerRange.setFontWeight("bold");
-  headerRange.setFontColor("#9A3412");
   headerRange.setHorizontalAlignment("center");
-  sheet.setFrozenRows(1);
+  sheet.setFrozenRows(1); // 1행 틀고정
 }
